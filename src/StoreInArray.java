@@ -71,7 +71,7 @@ public class StoreInArray implements Runnable{
 
             //ending time
             end = System.currentTimeMillis();
-            System.out.println("         by thread: "+Thread.currentThread().getName()+ "       storing input through char array in 6 different arrays from list with "+ReadInputs.noOfLines+" size takes: " + (end - start) + "ms");
+            System.out.println("         by thread: "+Thread.currentThread().getName()+ "       storing input through char array in 6 different arrays from list with "+ReadInputs.noOfLines+" size takes: " + (end - start) + "ms"+"   "+start+"  "+end);
             //-------------------------------------------------------------------------------------------------
 //            print();
         }

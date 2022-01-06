@@ -35,6 +35,9 @@ public class App {
         int iterateLoopStart = 0;
         int iterateLoopEnd = 0;
 
+
+
+
         //starting time
         start = System.currentTimeMillis();
 
@@ -42,6 +45,8 @@ public class App {
         StoreInArray[] sia = new StoreInArray[coreCount];
 
         ExecutorService service = Executors.newFixedThreadPool(coreCount);
+//        service.execute(new StoreInMapToGroupBy());
+
         if(k>3){
 //            service.execute(new StoreInArray(0,k-1));
             int batchSize = ReadInputs.noOfLines/4;
@@ -75,6 +80,7 @@ public class App {
             service.execute(sia[0]);
 //            service.execute(new StoreInArrayFull());
         }
+        service.execute(new StoreInMapToGroupBy());
         service.shutdown();
 
         //ending time
@@ -82,11 +88,10 @@ public class App {
 //        System.out.println("Running StoreInArray takes: " + (end - start) + "ms");
 
 
-        ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
-
-        executorService.schedule(new StoreFromArrayToObject(), 18, TimeUnit.SECONDS);
-        executorService.schedule(new GroupBy(), 22, TimeUnit.SECONDS);
-        executorService.shutdown();
+//        ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
+//
+//        executorService.schedule(new StoreInMapToGroupBy(), 10, TimeUnit.SECONDS);
+//        executorService.shutdown();
 
 
 

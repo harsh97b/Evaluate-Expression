@@ -69,29 +69,29 @@ public class ReadInputs implements Runnable{
 
         //-------------------------------------------------------------------------------------------------------
 
-        //starting time
-        start = System.currentTimeMillis();
-
-        //Task
-        path = "C:\\Users\\veer5\\IdeaProjects\\Evaluate Expression\\Inputs\\Inputs_5_Million.txt";
-        stringList = bufferReaderToArrayList(path);
-
-        //ending time
-        end = System.currentTimeMillis();
-        System.out.println("       Storing the 5 million input in List takes: " + (end - start) + "ms");
-
-        //-------------------------------------------------------------------------------------------------------
-
 //        //starting time
 //        start = System.currentTimeMillis();
 //
 //        //Task
-//        path = "C:\\Users\\veer5\\IdeaProjects\\Evaluate Expression\\Inputs\\Inputs_10_Million.txt";
+//        path = "C:\\Users\\veer5\\IdeaProjects\\Evaluate Expression\\Inputs\\Inputs_5_Million.txt";
 //        stringList = bufferReaderToArrayList(path);
 //
 //        //ending time
 //        end = System.currentTimeMillis();
-//        System.out.println("       Storing the 10 million input in List takes: " + (end - start) + "ms");
+//        System.out.println("       Storing the 5 million input in List takes: " + (end - start) + "ms");
+
+        //-------------------------------------------------------------------------------------------------------
+
+        //starting time
+        start = System.currentTimeMillis();
+
+        //Task
+        path = "C:\\Users\\veer5\\IdeaProjects\\Evaluate Expression\\Inputs\\Inputs_10_Million.txt";
+        stringList = bufferReaderToArrayList(path);
+
+        //ending time
+        end = System.currentTimeMillis();
+        System.out.println("       Storing the 10 million input in List takes: " + (end - start) + "ms");
 
         //-------------------------------------------------------------------------------------------------------
 

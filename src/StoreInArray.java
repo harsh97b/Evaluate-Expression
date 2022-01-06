@@ -58,7 +58,7 @@ public class StoreInArray{
 
             //ending time
             end = System.currentTimeMillis();
-            System.out.println("       storing input through char array in 6 different arrays from list with 10 million size takes: " + (end - start) + "ms");
+            System.out.println("       storing input through char array in 6 different arrays from list with "+ReadInputs.noOfLines+" size takes: " + (end - start) + "ms");
             //-------------------------------------------------------------------------------------------------
 //            print();
         }

@@ -55,16 +55,16 @@ public class ReadInputs implements Runnable{
 //        System.out.println("       Storing 5 lines of input in List takes: " + (end - start) + "ms");
 
         //------------------------------------------------------------------------------------------------------
-//        //starting time
-//        start = System.currentTimeMillis();
-//
-//        //Task
-//        path = "C:\\Users\\veer5\\IdeaProjects\\Evaluate Expression\\Inputs\\Inputs_1_Million.txt";
-//        stringList = bufferReaderToArrayList(path);
-//
-//        //ending time
-//        end = System.currentTimeMillis();
-//        System.out.println("       Storing the 1 million input in List takes: " + (end - start) + "ms");
+        //starting time
+        start = System.currentTimeMillis();
+
+        //Task
+        path = "C:\\Users\\veer5\\IdeaProjects\\Evaluate Expression\\Inputs\\Inputs_1_Million.txt";
+        stringList = bufferReaderToArrayList(path);
+
+        //ending time
+        end = System.currentTimeMillis();
+        System.out.println("       Storing the 1 million input in List takes: " + (end - start) + "ms");
 
         //-------------------------------------------------------------------------------------------------------
 
@@ -81,16 +81,16 @@ public class ReadInputs implements Runnable{
 
         //-------------------------------------------------------------------------------------------------------
 
-        //starting time
-        start = System.currentTimeMillis();
-
-        //Task
-        path = "C:\\Users\\veer5\\IdeaProjects\\Evaluate Expression\\Inputs\\Inputs_10_Million.txt";
-        stringList = bufferReaderToArrayList(path);
-
-        //ending time
-        end = System.currentTimeMillis();
-        System.out.println("       Storing the 10 million input in List takes: " + (end - start) + "ms");
+//        //starting time
+//        start = System.currentTimeMillis();
+//
+//        //Task
+//        path = "C:\\Users\\veer5\\IdeaProjects\\Evaluate Expression\\Inputs\\Inputs_10_Million.txt";
+//        stringList = bufferReaderToArrayList(path);
+//
+//        //ending time
+//        end = System.currentTimeMillis();
+//        System.out.println("       Storing the 10 million input in List takes: " + (end - start) + "ms");
 
         //-------------------------------------------------------------------------------------------------------
 

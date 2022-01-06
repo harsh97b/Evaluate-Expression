@@ -55,29 +55,30 @@ public class ReadInputs implements Runnable{
 //        System.out.println("       Storing 5 lines of input in List takes: " + (end - start) + "ms");
 
         //------------------------------------------------------------------------------------------------------
-        //starting time
-        start = System.currentTimeMillis();
-
-        //Task
-        path = "C:\\Users\\veer5\\IdeaProjects\\Evaluate Expression\\Inputs\\Inputs_1_Million.txt";
-        stringList = bufferReaderToArrayList(path);
-
-        //ending time
-        end = System.currentTimeMillis();
-        System.out.println("       Storing the 1 million input in List takes: " + (end - start) + "ms");
-
-        //-------------------------------------------------------------------------------------------------------
 
 //        //starting time
 //        start = System.currentTimeMillis();
 //
 //        //Task
-//        path = "C:\\Users\\veer5\\IdeaProjects\\Evaluate Expression\\Inputs\\Inputs_5_Million.txt";
+//        path = "C:\\Users\\veer5\\IdeaProjects\\Evaluate Expression\\Inputs\\Inputs_1_Million.txt";
 //        stringList = bufferReaderToArrayList(path);
 //
 //        //ending time
 //        end = System.currentTimeMillis();
-//        System.out.println("       Storing the 5 million input in List takes: " + (end - start) + "ms");
+//        System.out.println("       Storing the 1 million input in List takes: " + (end - start) + "ms");
+
+        //-------------------------------------------------------------------------------------------------------
+
+        //starting time
+        start = System.currentTimeMillis();
+
+        //Task
+        path = "C:\\Users\\veer5\\IdeaProjects\\Evaluate Expression\\Inputs\\Inputs_5_Million.txt";
+        stringList = bufferReaderToArrayList(path);
+
+        //ending time
+        end = System.currentTimeMillis();
+        System.out.println("       Storing the 5 million input in List takes: " + (end - start) + "ms");
 
         //-------------------------------------------------------------------------------------------------------
 
@@ -112,6 +113,7 @@ public class ReadInputs implements Runnable{
         start = System.currentTimeMillis();
 
         //Task
+        //Initializing the arrays;
         arr1 = new float[k];
         arr2 = new float[k];
         arr3 = new float[k];

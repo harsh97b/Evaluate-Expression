@@ -2,31 +2,50 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class StoreInMapToGroupBy implements Runnable{
+    private int iterateLoopStart = 0;
+    private int iterateLoopEnd = 0;
     public static Map<String,Double> map = new HashMap<>();
+
+    StoreInMapToGroupBy(int iterateLoopStart, int iterateLoopEnd){
+        this.iterateLoopStart = iterateLoopStart;
+        this.iterateLoopEnd = iterateLoopEnd;
+    }
 
     @Override
     public void run() {
-        //starting time
-        long start = System.currentTimeMillis();
-
-        //Task
-        storeInMap();
-
-        //ending time
-        long end = System.currentTimeMillis();
-        System.out.println("       Storing "+ReadInputs.noOfLines+" input lines in Map takes: " + (end - start) + "ms"+"   "+start+"  "+end);
+        storeInMap(iterateLoopStart, iterateLoopEnd);
     }
-    public static void storeInMap(){
-        for (int i = 0; i < ReadInputs.noOfLines; i++) {
-            if(ReadInputs.region[i]==null){
-                System.out.println("------------------------------------>>>>>>>>>>>>>>>>>here one region value is null");
-                break;
+    public static void storeInMap(int iterateLoopStart, int iterateLoopEnd){
+        long start = 0, end =0;
+
+        if(ReadInputs.noOfLines != 0) {
+
+
+            //starting time
+            start = System.currentTimeMillis();
+
+            //Task
+            //************************************************************************************
+
+            System.out.println("                    [StoreInMapToGroupBy]    iterateLoopStart: " + iterateLoopStart + "        iterateLoopEnd: " + iterateLoopEnd + "    by thread: " + Thread.currentThread().getName());
+            for (int i = iterateLoopStart; i <= iterateLoopEnd; i++) {
+//                System.out.println("i: "+i);
+                if (ReadInputs.region[i] == null) {
+                    System.out.println("------------------------------------>>>>>>>>>>>>>>>>>here one region value is null");
+                    break;
+                }
+                String str = ReadInputs.region[i] + " " + ReadInputs.country[i];
+                double count = StoreInMapToGroupBy.map.getOrDefault(str, 0.0);
+//                System.out.println("For: "+ str + "   count: "+count+"     result: "+ReadInputs.result[i]);
+                StoreInMapToGroupBy.map.put(str, count + ReadInputs.result[i]);
             }
-            String str = ReadInputs.region[i]+" "+ReadInputs.country[i];
-            double count = map.getOrDefault(str,0.0);
-            map.put(str,count+ReadInputs.result[i]);
+//            StoreInMapToGroupBy.map.forEach((key, value) -> System.out.println(key + " " + value));
+
+
+            //ending time
+            end = System.currentTimeMillis();
+            System.out.println("         by thread: " + Thread.currentThread().getName() + "     [StoreInMapToGroupBy] Storing in map takes: " + (end - start) + "ms");
+//            System.out.println("   "+start+"  "+end);
         }
-        //printing the map
-        map.forEach((key, value) -> System.out.println(key + " " + value));
     }
 }

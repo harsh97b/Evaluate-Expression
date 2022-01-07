@@ -108,7 +108,7 @@ public class ReadInputs implements Runnable{
 //        System.out.println("       Storing the 1 million single input in List takes: " + (end - start) + "ms");
         //-------------------------------------------------------------------------------------------------------
         int k = noOfLines;
-        System.out.println("k: "+k);
+        System.out.println("ReadInputs.noOfLines: "+noOfLines);
         //starting time
         start = System.currentTimeMillis();
 

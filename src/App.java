@@ -18,7 +18,6 @@ public class App {
 
         System.out.println("---------------------------------Proceeding to the ReadInputs------------------------------------");
 
-        //measuring time to read inputs
         //starting time for ReadInputs
         start = System.currentTimeMillis();
 
@@ -94,7 +93,7 @@ public class App {
         //allFutures.clear();
 //        StoreInArray.print();
 
-        //ending time for ReadInputs
+        //ending time for StoreInArray
         end = System.currentTimeMillis();
         System.out.println("Running StoreInArray and Evaluating takes: " + (end - start) + "ms");
 
@@ -149,11 +148,14 @@ public class App {
             e.printStackTrace();
         }
 
-        // ending time for StoreInMapToGroupBy
+        //ending time for StoreInMapToGroupBy
         end = System.currentTimeMillis();
         System.out.println("Running StoreInMapToGroupBy takes: " + (end - start) + "ms");
 
         System.out.println("-------------------------------Proceeding to the PrintResult------------------------------------");
+
+        //starting time for PrintResult
+        start = System.currentTimeMillis();
 
         //submiting last task
         future = service.submit(new PrintResult());
@@ -170,6 +172,10 @@ public class App {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
+
+        //ending time for PrintResult
+        end = System.currentTimeMillis();
+        System.out.println("Running PrintResult takes: " + (end - start) + "ms");
 
         //ending time for the whole program
         long endOfProgram = System.currentTimeMillis();

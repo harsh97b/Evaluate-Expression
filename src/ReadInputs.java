@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-public class ReadInputs implements Runnable{
+public class ReadInputs{
     public static int noOfLines;
     public static float[] arr1;
     public static float[] arr2;
@@ -26,89 +26,35 @@ public class ReadInputs implements Runnable{
     ReadInputs(String expr){
         this.expr = expr;
     }
-    @Override
-    public void run() {
-        System.out.println("here in running read input thread");
-//        readInputs();
-    }
+
 
     //    long noOfLines=0;
     public static void readInputs(){
-        //File file = new File("C:\\Users\\veer5\\IdeaProjects\\Evaluate Expression\\src\\Inputs.txt");
 
         long start = 0, end =0;
         String path = null;
 
-//        List<String> stringList;
+//        path = "C:\\Users\\veer5\\IdeaProjects\\Evaluate Expression\\Inputs\\Inputs.txt";
+        path = "C:\\Users\\veer5\\IdeaProjects\\Evaluate Expression\\Inputs\\Inputs_1_Million.txt";
+//        path = "C:\\Users\\veer5\\IdeaProjects\\Evaluate Expression\\Inputs\\Inputs_5_Million.txt";
+//        path = "C:\\Users\\veer5\\IdeaProjects\\Evaluate Expression\\Inputs\\Inputs_10_Million.txt";
+//        path = "C:\\Users\\veer5\\IdeaProjects\\Evaluate Expression\\Inputs\\Inputs_1_Million_Single.txt";
 
         //-------------------------------------------------------------------------------------------------------
-
-//        //starting time
-//        start = System.currentTimeMillis();
-//
-//        //Task
-//        path = "C:\\Users\\veer5\\IdeaProjects\\Evaluate Expression\\Inputs\\Inputs.txt";
-//        stringList = bufferReaderToArrayList(path);
-//
-//        //ending time
-//        end = System.currentTimeMillis();
-//        System.out.println("       Storing 5 lines of input in List takes: " + (end - start) + "ms");
-
-        //------------------------------------------------------------------------------------------------------
 
         //starting time
         start = System.currentTimeMillis();
 
         //Task
-        path = "C:\\Users\\veer5\\IdeaProjects\\Evaluate Expression\\Inputs\\Inputs_1_Million.txt";
         stringList = bufferReaderToArrayList(path);
 
         //ending time
         end = System.currentTimeMillis();
-        System.out.println("       Storing the 1 million input in List takes: " + (end - start) + "ms");
+        System.out.println("        Storing "+noOfLines+" lines of input in List takes: " + (end - start) + "ms");
 
-        //-------------------------------------------------------------------------------------------------------
-
-//        //starting time
-//        start = System.currentTimeMillis();
-//
-//        //Task
-//        path = "C:\\Users\\veer5\\IdeaProjects\\Evaluate Expression\\Inputs\\Inputs_5_Million.txt";
-//        stringList = bufferReaderToArrayList(path);
-//
-//        //ending time
-//        end = System.currentTimeMillis();
-//        System.out.println("       Storing the 5 million input in List takes: " + (end - start) + "ms");
-
-        //-------------------------------------------------------------------------------------------------------
-
-//        //starting time
-//        start = System.currentTimeMillis();
-//
-//        //Task
-//        path = "C:\\Users\\veer5\\IdeaProjects\\Evaluate Expression\\Inputs\\Inputs_10_Million.txt";
-//        stringList = bufferReaderToArrayList(path);
-//
-//        //ending time
-//        end = System.currentTimeMillis();
-//        System.out.println("       Storing the 10 million input in List takes: " + (end - start) + "ms");
-
-        //-------------------------------------------------------------------------------------------------------
-
-//        //starting time
-//        start = System.currentTimeMillis();
-//
-//        //Task
-//        path = "C:\\Users\\veer5\\IdeaProjects\\Evaluate Expression\\Inputs\\Inputs_1_Million_Single.txt";
-
-//        stringListSingle = bufferReaderToArrayList(path);
-//
-//        //ending time
-//        end = System.currentTimeMillis();
-//        System.out.println("       Storing the 1 million single input in List takes: " + (end - start) + "ms");
         //-------------------------------------------------------------------------------------------------------
         int k = noOfLines;
-        System.out.println("ReadInputs.noOfLines: "+noOfLines);
+        System.out.println("        ReadInputs.noOfLines: "+noOfLines);
         //starting time
         start = System.currentTimeMillis();
 
@@ -124,7 +70,7 @@ public class ReadInputs implements Runnable{
 
         //ending time
         end = System.currentTimeMillis();
-        System.out.println("       creating 6 arrays with size "+k+" size takes: " + (end - start) + "ms");
+        System.out.println("        creating 6 arrays with size "+k+"  takes: " + (end - start) + "ms");
     }
     private static List<String> bufferReaderToArrayList(String path) {
         return bufferReaderToList(path, new ArrayList<>());
@@ -152,25 +98,4 @@ public class ReadInputs implements Runnable{
         }
         System.out.println();
     }
-
-    /*
-    public static void read() throws IOException {
-        FileInputStream fileInputStream = new FileInputStream(
-                new File("C:\\Users\\veer5\\IdeaProjects\\Demo Project\\src\\Inputs.txt"));
-        FileChannel fileChannel = fileInputStream.getChannel();
-        ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
-
-        fileChannel.read(byteBuffer);
-        byteBuffer.flip();
-        int limit = byteBuffer.limit();
-        System.out.println(limit+"<--limit");
-        while(limit>0)
-        {
-            System.out.print((char)byteBuffer.get());
-            limit--;
-        }
-
-        fileChannel.close();
-    }
-    */
 }

@@ -27,7 +27,8 @@ public class StoreInMapToGroupBy implements Runnable{
             //Task
             //************************************************************************************
 
-            System.out.println("                    [StoreInMapToGroupBy]    iterateLoopStart: " + iterateLoopStart + "        iterateLoopEnd: " + iterateLoopEnd + "    by thread: " + Thread.currentThread().getName());
+//            System.out.println("        by thread: "+Thread.currentThread().getName()+ "       [StoreInMapToGroupBy]        iterateLoopStart: "+iterateLoopStart+"        iterateLoopEnd: "+iterateLoopEnd);
+
             for (int i = iterateLoopStart; i <= iterateLoopEnd; i++) {
 //                System.out.println("i: "+i);
                 if (ReadInputs.region[i] == null) {
@@ -44,7 +45,7 @@ public class StoreInMapToGroupBy implements Runnable{
 
             //ending time
             end = System.currentTimeMillis();
-            System.out.println("         by thread: " + Thread.currentThread().getName() + "     [StoreInMapToGroupBy] Storing in map takes: " + (end - start) + "ms");
+            System.out.println("        by thread: "+Thread.currentThread().getName()+ "       [StoreInMapToGroupBy]    Loop("+iterateLoopStart+" -> "+iterateLoopEnd+")    Storing in map "+(iterateLoopEnd-iterateLoopStart+1)+" inputs takes: " + (end - start) + "ms");
 //            System.out.println("   "+start+"  "+end);
         }
     }

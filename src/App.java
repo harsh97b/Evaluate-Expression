@@ -4,66 +4,64 @@ import java.util.concurrent.*;
 
 public class App {
     public static void main(String[] args) {
+        //counting the cores present in the system to decide the number of threads
+
+        //starting time for the whole program
+        long startOfProgram = System.currentTimeMillis();
+
+
         int coreCount = Runtime.getRuntime().availableProcessors();
         System.out.println("core count: "+coreCount);
-//        ExecutorService service = Executors.newFixedThreadPool(coreCount);
-//        for (int i = 0; i < 10; i++) {
-//            service.execute(new Task());
-//        }
 
         long start=0, end=0;
         String expr = "a1+a2+a3+a4";
 
-//        JavaGroupingByCollectorUnitTest.print();
-//        StoreFromArrayToObject.doItNow();
-//        GroupBy.print();
-
+        System.out.println("---------------------------------Proceeding to the ReadInputs------------------------------------");
 
         //measuring time to read inputs
-        //starting time
+        //starting time for ReadInputs
         start = System.currentTimeMillis();
 
         //Task
         ReadInputs ri = new ReadInputs(expr);
         ReadInputs.readInputs();
 
-        //ending time
+        //ending time for ReadInputs
         end = System.currentTimeMillis();
         System.out.println("Running ReadInputs takes: " + (end - start) + "ms");
 
+        System.out.println("-------------------------Proceeding to the StoreInArray and Evaluating---------------------------");
+        //This section will use multithreading
+
+        //starting time for StoreInArray
+        start = System.currentTimeMillis();
 
         int k = ReadInputs.noOfLines;
         int iterateLoopStart = 0;
         int iterateLoopEnd = 0;
-
-
         StoreInArray[] storeInArray = new StoreInArray[coreCount];
         StoreInMapToGroupBy[] storeInMapToGroupBy = new StoreInMapToGroupBy[coreCount];
 
         ExecutorService service = Executors.newFixedThreadPool(coreCount);
         List<Future> allFutures= new ArrayList<>();
-//        Future<Integer future ;
         Future<?> future;
-        for (int i = 0; i < 4; i++) {
 
-
-        }
-
+        //If number of lines are greater than 3 then only we need to divide work across multiple threads
+        // otherwise single thread can handle 3 lines
         if(k>3){
             iterateLoopStart = 0;
             int batchSize = ReadInputs.noOfLines/4;
             int j=0;
             for (j = 1; j < coreCount; j++) {
                 iterateLoopEnd = j * batchSize;
-                System.out.println("iterateLoopStart: "+iterateLoopStart+"        iterateLoopEnd: "+iterateLoopEnd);
+//                System.out.println("iterateLoopStart: "+iterateLoopStart+"        iterateLoopEnd: "+iterateLoopEnd);
 
                 storeInArray[j-1] = new StoreInArray(iterateLoopStart,iterateLoopEnd);
                 iterateLoopStart = iterateLoopEnd+1;
             }
             iterateLoopEnd = ReadInputs.noOfLines-1;
-            System.out.println("iterateLoopStart: "+iterateLoopStart+"        iterateLoopEnd: "+iterateLoopEnd);
+//            System.out.println("iterateLoopStart: "+iterateLoopStart+"        iterateLoopEnd: "+iterateLoopEnd);
             storeInArray[j-1] = new StoreInArray(iterateLoopStart,iterateLoopEnd);
-//            System.out.println("storeInArray.length: "+storeInArray.length);
 
             for (int i = 0; i < coreCount; i++) {
                 future = service.submit(storeInArray[i]);
@@ -100,7 +98,16 @@ public class App {
         //allFutures.clear();
 //        StoreInArray.print();
 
-        System.out.println("-------------------------Proceeding to the StoreInMapToGroupBy------------------------------------------");
+        //ending time for ReadInputs
+        end = System.currentTimeMillis();
+        System.out.println("Running StoreInArray and Evaluating takes: " + (end - start) + "ms");
+
+
+        System.out.println("-----------------------------Proceeding to the StoreInMapToGroupBy-------------------------------");
+
+        //starting time for StoreInMapToGroupBy
+        start = System.currentTimeMillis();
+
         //doing StoreInMapToGroupBy by multithreading was giving wrong result, so decided to do it with single thread;
         future = service.submit(new StoreInMapToGroupBy(0,k-1));
         allFutures.add(future);
@@ -147,29 +154,42 @@ public class App {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-        allFutures.clear();
-        System.out.println("-------------------------------Proceeding to the Print Result------------------------------------");
 
+
+        // ending time for StoreInMapToGroupBy
+        end = System.currentTimeMillis();
+        System.out.println("Running StoreInMapToGroupBy takes: " + (end - start) + "ms");
+
+
+        System.out.println("-------------------------------Proceeding to the PrintResult------------------------------------");
 
         //submiting last task
-        service.execute(new PrintResult());
+        future = service.submit(new PrintResult());
+        allFutures.add(future);
 
         service.shutdown();
 
-//        //ending time
-//        end = System.currentTimeMillis();
-//        System.out.println("Running StoreInArray takes: " + (end - start) + "ms");
+        //haulting the program till the printresult is completed
+        try {
+            allFutures.get(noOfTasksNew).get();
+            System.out.println("Task "+(noOfTasksNew+1)+" is completed!");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+
+        //ending time for the whole program
+        long endOfProgram = System.currentTimeMillis();
+        System.out.println("-------------------------------< Whole program took: " + (endOfProgram - startOfProgram) + "ms >-----------------------------------");
+
 
 
 //        ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
 //
 //        executorService.schedule(new StoreInMapToGroupBy(), 10, TimeUnit.SECONDS);
 //        executorService.shutdown();
-
-
-
-
-
 
 
 //        ExecutorService service1 = Executors.newFixedThreadPool(coreCount);

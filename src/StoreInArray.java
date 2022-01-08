@@ -30,7 +30,8 @@ public class StoreInArray implements Runnable{
             //Task
             //************************************************************************************
 
-            System.out.println("                    [StoreInArray]    iterateLoopStart: "+iterateLoopStart+"        iterateLoopEnd: "+iterateLoopEnd+"    by thread: "+Thread.currentThread().getName());
+//            System.out.println("        by thread: "+Thread.currentThread().getName()+ "       [StoreInArray]        iterateLoopStart: "+iterateLoopStart+"        iterateLoopEnd: "+iterateLoopEnd);
+
             for (int i = iterateLoopStart; i <= iterateLoopEnd; i++) {
                 String[] strArray = new String[6];
                 int strArrayPointer = 0;
@@ -60,7 +61,7 @@ public class StoreInArray implements Runnable{
 
             //ending time
             end = System.currentTimeMillis();
-            System.out.println("         by thread: "+Thread.currentThread().getName()+ "    [StoreInArray]   storing input through char array in 6 different arrays from list with "+ReadInputs.noOfLines+" size takes: " + (end - start) + "ms");
+            System.out.println("        by thread: "+Thread.currentThread().getName()+ "       [StoreInArray]    Loop("+iterateLoopStart+" -> "+iterateLoopEnd+")    Storing in Array and Evaluating "+(iterateLoopEnd-iterateLoopStart+1)+" inputs takes: " + (end - start) + "ms");
 //            System.out.println("   "+start+"  "+end);
             //-------------------------------------------------------------------------------------------------
         }

@@ -77,13 +77,9 @@ public class App {
             storeInArray[0] = new StoreInArray(0, k - 1);
             future = service.submit(storeInArray[0]);
             allFutures.add(future);
-
 //            service.execute(new StoreInArrayFull());
         }
-//        allFutures.get(0).isDone();
-//        allFutures.get(1).isDone();
-//        allFutures.get(2).isDone();
-//        allFutures.get(3).isDone();
+
         int noOfTasks = allFutures.size();
         try {
             for (int i = 0; i < noOfTasks; i++) {
@@ -139,12 +135,10 @@ public class App {
 //
 //        }
 
-        // For haulting the program till previious programs execute
+        // For haulting the program till previous tasks execute
         int noOfTasksNew = allFutures.size();
         try {
-//            System.out.println("noOfTasks: "+noOfTasks);
-//            System.out.println("noOfTasksNew: "+noOfTasksNew);
-
+//            System.out.println("noOfTasks: "+noOfTasks+"    noOfTasksNew: "+noOfTasksNew);
             for (int i = noOfTasks; i < noOfTasksNew; i++) {
                 allFutures.get(i).get();
                 System.out.println("Task "+(i+1)+" is completed!");
@@ -155,11 +149,9 @@ public class App {
             e.printStackTrace();
         }
 
-
         // ending time for StoreInMapToGroupBy
         end = System.currentTimeMillis();
         System.out.println("Running StoreInMapToGroupBy takes: " + (end - start) + "ms");
-
 
         System.out.println("-------------------------------Proceeding to the PrintResult------------------------------------");
 
@@ -179,33 +171,26 @@ public class App {
             e.printStackTrace();
         }
 
-
         //ending time for the whole program
         long endOfProgram = System.currentTimeMillis();
         System.out.println("-------------------------------< Whole program took: " + (endOfProgram - startOfProgram) + "ms >-----------------------------------");
-
-
 
 //        ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
 //
 //        executorService.schedule(new StoreInMapToGroupBy(), 10, TimeUnit.SECONDS);
 //        executorService.shutdown();
-
-
+//
 //        ExecutorService service1 = Executors.newFixedThreadPool(coreCount);
 //        service1.execute(new StoreFromArrayToObject());
 //        service1.shutdown();
 //
-//
-//
 //        ExecutorService service2 = Executors.newFixedThreadPool(coreCount);
 //        service2.execute(new GroupBy());
 //        service2.shutdown();
-
-
+//
 //        StoreFromArrayToObject.doItNow();
 //        GroupBy.print();
-
+//
 //        System.out.println("no of values in array : "+ReadInputs.noOfLines);
 //        System.out.println("last value of arr1: "+ReadInputs.arr1[ReadInputs.noOfLines-1]);
     }

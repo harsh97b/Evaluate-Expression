@@ -15,6 +15,7 @@ public class ReadInputs{
     public static String[] region;
     public static String[] country;
     public static String expr= null;
+    public static String filePath= null;
 
 //    public static double[] arr1;
 //    public static double[] arr2;
@@ -23,8 +24,9 @@ public class ReadInputs{
 
     public static List<String> stringList;
 
-    ReadInputs(String expr){
+    ReadInputs(String expr, String filePath){
         this.expr = expr;
+        this.filePath = filePath;
     }
 
 
@@ -33,12 +35,7 @@ public class ReadInputs{
 
         long start = 0, end =0;
         String path = null;
-
-//        path = "C:\\Users\\veer5\\IdeaProjects\\Evaluate Expression\\Inputs\\Inputs.txt";
-        path = "C:\\Users\\veer5\\IdeaProjects\\Evaluate Expression\\Inputs\\Inputs_1_Million.txt";
-//        path = "C:\\Users\\veer5\\IdeaProjects\\Evaluate Expression\\Inputs\\Inputs_5_Million.txt";
-//        path = "C:\\Users\\veer5\\IdeaProjects\\Evaluate Expression\\Inputs\\Inputs_10_Million.txt";
-//        path = "C:\\Users\\veer5\\IdeaProjects\\Evaluate Expression\\Inputs\\Inputs_1_Million_Single.txt";
+        path = filePath;
 
         //-------------------------------------------------------------------------------------------------------
 

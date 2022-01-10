@@ -6,6 +6,26 @@ public class App {
     public static void main(String[] args) {
         //counting the cores present in the system to decide the number of threads
 
+        String path;
+        long start=0, end=0;
+        String expr = "a1+a2+a3+a4";
+
+        if(args.length == 2){
+            System.out.println("Taking Arguments from CLI");
+            expr = args[0];
+            path = args[1];
+            System.out.println("Expression: "+expr);
+            System.out.println("Path: "+path);
+        }
+        else{
+//            path = "C:\\Users\\veer5\\IdeaProjects\\Evaluate Expression\\Inputs\\Inputs.txt";
+            path = "C:\\Users\\veer5\\IdeaProjects\\Evaluate Expression\\Inputs\\Inputs_1_Million.txt";
+//            path = "C:\\Users\\veer5\\IdeaProjects\\Evaluate Expression\\Inputs\\Inputs_5_Million.txt";
+//            path = "C:\\Users\\veer5\\IdeaProjects\\Evaluate Expression\\Inputs\\Inputs_10_Million.txt";
+//            path = "C:\\Users\\veer5\\IdeaProjects\\Evaluate Expression\\Inputs\\Inputs_1_Million_Single.txt";
+        }
+
+
         //starting time for the whole program
         long startOfProgram = System.currentTimeMillis();
 
@@ -13,17 +33,15 @@ public class App {
         int coreCount = Runtime.getRuntime().availableProcessors();
         System.out.println("core count: "+coreCount);
 
-        long start=0, end=0;
-        String expr = "a1+a2+a3+a4";
+
 
         System.out.println("---------------------------------Proceeding to the ReadInputs------------------------------------");
 
-        //measuring time to read inputs
         //starting time for ReadInputs
         start = System.currentTimeMillis();
 
         //Task
-        ReadInputs ri = new ReadInputs(expr);
+        ReadInputs ri = new ReadInputs(expr,path);
         ReadInputs.readInputs();
 
         //ending time for ReadInputs
@@ -94,7 +112,7 @@ public class App {
         //allFutures.clear();
 //        StoreInArray.print();
 
-        //ending time for ReadInputs
+        //ending time for StoreInArray
         end = System.currentTimeMillis();
         System.out.println("Running StoreInArray and Evaluating takes: " + (end - start) + "ms");
 
@@ -149,11 +167,14 @@ public class App {
             e.printStackTrace();
         }
 
-        // ending time for StoreInMapToGroupBy
+        //ending time for StoreInMapToGroupBy
         end = System.currentTimeMillis();
         System.out.println("Running StoreInMapToGroupBy takes: " + (end - start) + "ms");
 
         System.out.println("-------------------------------Proceeding to the PrintResult------------------------------------");
+
+        //starting time for PrintResult
+        start = System.currentTimeMillis();
 
         //submiting last task
         future = service.submit(new PrintResult());
@@ -170,6 +191,10 @@ public class App {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
+
+        //ending time for PrintResult
+        end = System.currentTimeMillis();
+        System.out.println("Running PrintResult takes: " + (end - start) + "ms");
 
         //ending time for the whole program
         long endOfProgram = System.currentTimeMillis();

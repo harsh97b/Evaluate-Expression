@@ -6,6 +6,26 @@ public class App {
     public static void main(String[] args) {
         //counting the cores present in the system to decide the number of threads
 
+        String path;
+        long start=0, end=0;
+        String expr = "a1+a2+a3+a4";
+
+        if(args.length == 2){
+            System.out.println("Taking Arguments from CLI");
+            expr = args[0];
+            path = args[1];
+            System.out.println("Expression: "+expr);
+            System.out.println("Path: "+path);
+        }
+        else{
+//            path = "C:\\Users\\veer5\\IdeaProjects\\Evaluate Expression\\Inputs\\Inputs.txt";
+            path = "C:\\Users\\veer5\\IdeaProjects\\Evaluate Expression\\Inputs\\Inputs_1_Million.txt";
+//            path = "C:\\Users\\veer5\\IdeaProjects\\Evaluate Expression\\Inputs\\Inputs_5_Million.txt";
+//            path = "C:\\Users\\veer5\\IdeaProjects\\Evaluate Expression\\Inputs\\Inputs_10_Million.txt";
+//            path = "C:\\Users\\veer5\\IdeaProjects\\Evaluate Expression\\Inputs\\Inputs_1_Million_Single.txt";
+        }
+
+
         //starting time for the whole program
         long startOfProgram = System.currentTimeMillis();
 
@@ -13,8 +33,7 @@ public class App {
         int coreCount = Runtime.getRuntime().availableProcessors();
         System.out.println("core count: "+coreCount);
 
-        long start=0, end=0;
-        String expr = "a1+a2+a3+a4";
+
 
         System.out.println("---------------------------------Proceeding to the ReadInputs------------------------------------");
 
@@ -22,7 +41,7 @@ public class App {
         start = System.currentTimeMillis();
 
         //Task
-        ReadInputs ri = new ReadInputs(expr);
+        ReadInputs ri = new ReadInputs(expr,path);
         ReadInputs.readInputs();
 
         //ending time for ReadInputs

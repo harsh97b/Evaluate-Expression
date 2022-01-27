@@ -10,6 +10,9 @@ public class App {
         long start=0, end=0;
         String expr = "a1+a2+a3+a4";
 
+        //starting time for the whole program
+        long startOfProgram = System.currentTimeMillis();
+
         if(args.length == 2){
             System.out.println("Taking Arguments from CLI");
             expr = args[0];
@@ -19,21 +22,15 @@ public class App {
         }
         else{
 //            path = "C:\\Users\\veer5\\IdeaProjects\\Evaluate Expression\\Inputs\\Inputs.txt";
-            path = "C:\\Users\\veer5\\IdeaProjects\\Evaluate Expression\\Inputs\\Inputs_1_Million.txt";
-//            path = "C:\\Users\\veer5\\IdeaProjects\\Evaluate Expression\\Inputs\\Inputs_5_Million.txt";
+//            path = "C:\\Users\\veer5\\IdeaProjects\\Evaluate Expression\\Inputs\\Inputs_1_Million.txt";
+            path = "C:\\Users\\veer5\\IdeaProjects\\Evaluate Expression\\Inputs\\Inputs_5_Million.txt";
 //            path = "C:\\Users\\veer5\\IdeaProjects\\Evaluate Expression\\Inputs\\Inputs_10_Million.txt";
 //            path = "C:\\Users\\veer5\\IdeaProjects\\Evaluate Expression\\Inputs\\Inputs_1_Million_Single.txt";
         }
 
 
-        //starting time for the whole program
-        long startOfProgram = System.currentTimeMillis();
-
-
         int coreCount = Runtime.getRuntime().availableProcessors();
         System.out.println("core count: "+coreCount);
-
-
 
         System.out.println("---------------------------------Proceeding to the ReadInputs------------------------------------");
 
